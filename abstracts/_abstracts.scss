@@ -10,6 +10,12 @@
     align-items: center;
 }
 
+%flex-columna {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 %margenes-titulos {
     margin-block-start: 0.83em;
     margin-block-end: 0.83em;

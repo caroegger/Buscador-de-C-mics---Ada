@@ -1,0 +1,76 @@
+@import "../abstracts/abstracts";
+
+.contenedor-logo {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px;
+    box-sizing: border-box;
+    .logo {
+        background-color: $color-fondo-secundario;
+        color: $color-principal;
+        font-family: $tipografia-secundaria;
+        font-weight: bold;
+        font-size: 45px;
+        line-height: 50px;
+        margin: 0;
+        padding: 0 10px;
+    }
+}
+
+.contenedor-banner {
+    width: 100%;
+    min-height: 400px;
+    background-image: url(https://frontend-proyecto-comics.adaitw.org/hero.jpg);
+    background-size: cover;
+    position: relative;
+    &::before {
+        content:'';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0,0,0,0.5);
+    }
+}
+
+.contenedor-busqueda {
+    @extend %espaciar-flex;
+    .contenedor-input-busqueda {
+        position: relative;
+        min-width: 50%;
+        .input-busqueda {
+            border: 0;
+            border-bottom: 2px solid $color-secundario;
+            width: 100%;
+            padding: 5px 35px;
+            border-radius: 0;
+            font-size: 26px;
+            box-sizing: border-box;
+        }
+        .fa-search {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 10px;
+            font-weight: 900;
+        }
+    }
+}
+
+.boton-buscar {
+    @include boton;
+    margin-left: 30px;
+    padding: 10px 15px;
+}
+
+.boton-paginado {
+    @include boton;
+    @extend %centrar-flex;
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+}
