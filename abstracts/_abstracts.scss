@@ -1,0 +1,30 @@
+%espaciar-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+%centrar-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+%margenes-titulos {
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+@mixin boton {
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #151515;
+    color: #ffffff;
+    text-transform: uppercase;
+    border: transparent;
+    padding: 5px 10px;
+    margin: 0 5px;
+    transition: 0.2s;
+}

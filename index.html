@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+    <title>Buscador de cómics</title>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="contenedor-logo">
+            <h1 class="logo">ADA COMICS</h1>
+        </div>
+    </header>
+    <!-- FIN HEADER -->
+
+    <!-- BANNER -->
+    <div class="contenedor-banner">
+        <!-- IMG BANNER -->
+    </div>
+    <!-- FIN BANNER -->
+
+    <!-- MAIN -->
+    <main>
+        <!-- SECCION PARAMETROS DE BUSQUEDA -->
+        <div class="seccion-busqueda">
+            <h2 class="titulo-busqueda">Búsqueda</h2>
+            <div class="contenedor-busqueda">
+                <div class="contenedor-input-busqueda">
+                    <input type="text" placeholder="Ingresá tu búsqueda" class="input-busqueda">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="contenedor-filtros-busqueda">
+                    <div class="filtros">
+                        <label for="search-type">TIPO
+                            <select name="search-type" id="busqueda-tipo">
+                                <option value="comics">COMICS</option>
+                                <option value="characters">PERSONAJES</option>
+                            </select>
+                        </label>
+                        <label for="search-sort">ORDEN
+                            <select name="search-sort" id="busqueda-orden">
+                                <option value="title">A-Z</option>
+                                <option value="-title">Z-A</option>
+                                <option value="-focDate">Más nuevos</option>
+                                <option value="focDate">Más viejos</option>
+                            </select>
+                        </label>
+                    </div>
+                    <button class="boton-buscar">BUSCAR</button>
+                </div>
+            </div>
+        </div>
+        <!-- FIN SECCION PARAMETROS DE BUSQUEDA -->
+        <!-- SECCION RESULTADOS -->
+        <div>
+            <div class="contenedor-resultados">
+                <h2 class="titulo-resultados">Resultados</h2>
+                <p class="numero-de-resultados"> <span>48413</span>RESULTADOS</p>
+                <div class="resultados">
+                    <!-- CARDS -->
+                </div>
+                
+                <!-- PAGINADO -->
+                <div class="paginado">
+                    <button class="primera-pagina boton-paginado">
+                        <i class="fas fa-angle-double-left"></i>
+                    </button>
+                    <button class="pagina-previa boton-paginado">
+                        <i class="fas fa-angle-left"></i>
+                    </button>
+                    <button class="pagina-siguiente boton-paginado">
+                        <i class="fas fa-angle-right"></i>
+                    </button>
+                    <button class="ultima-pagina boton-paginado">
+                        <i class="fas fa-angle-double-right"></i>
+                    </button>
+                </div>
+                <!-- FIN PAGINADO -->
+            </div>
+        </div>
+        <!-- FIN SECCION RESULTADOS -->
+    </main>
+    <!-- FIN MAIN -->
+
+    <!-- FOOTER -->
+    <footer>
+        <div>Hecho con 👽 por Carola</div>
+    </footer>
+    <!-- FIN FOOTER -->
+
+    <script src="index.js"></script>
+</body>
+</html>
