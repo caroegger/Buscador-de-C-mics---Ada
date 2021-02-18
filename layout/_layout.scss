@@ -58,6 +58,10 @@ label {
     }
 }
 
+.contenedor-busqueda {
+    @extend %espaciar-flex;
+}
+
 .titulo-resultados {
     @extend %margenes-titulos;
     display: block;

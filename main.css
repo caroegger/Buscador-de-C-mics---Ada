@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
-.contenedor-filtros-busqueda, .contenedor-busqueda {
+.contenedor-busqueda, .contenedor-filtros-busqueda {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -65,11 +65,11 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.contenedor-busqueda .contenedor-input-busqueda {
+.contenedor-input-busqueda {
   position: relative;
   min-width: 50%;
 }
-.contenedor-busqueda .contenedor-input-busqueda .input-busqueda {
+.contenedor-input-busqueda .input-busqueda {
   border: 0;
   border-bottom: 2px solid #151515;
   width: 100%;
@@ -78,7 +78,7 @@ body {
   font-size: 26px;
   box-sizing: border-box;
 }
-.contenedor-busqueda .contenedor-input-busqueda .fa-search {
+.contenedor-input-busqueda .fa-search {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -163,7 +163,7 @@ body {
   font-size: 14px;
 }
 
-.contenedor-filtros-busqueda, .contenedor-busqueda {
+.contenedor-busqueda, .contenedor-filtros-busqueda {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
