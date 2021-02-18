@@ -74,3 +74,48 @@
     height: 40px;
     font-size: 25px;
 }
+
+.tarjeta-comic {
+    width: calc(100% / 5 - 2 * 10px);
+    @extend %margenes-tarjetas;
+    display: flex;
+    flex-direction: column;
+    .contenedor-imagen-comic {
+        flex-grow: 1;
+        .imagen-comic {
+            @include imagenes-tarjetas;
+        }
+    }
+    .titulo-comic {
+        @include info-tarjetas
+    }
+}
+
+.tarjeta-personaje {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% / 6 - 2 * 10px);
+    @extend %margenes-tarjetas;
+    .contenedor-imagen-personaje {
+        flex-grow: 1;
+        border-bottom: 4px solid $color-fondo-secundario;
+        overflow: hidden;
+        .imagen-personaje {
+            @include imagenes-tarjetas;
+            object-fit: cover;
+        }
+    }
+    .contenedor-nombre-personaje {
+        padding: 16px 24px 17px 20px;
+        background-color: $color-secundario;
+        transition: 0.2s;
+        .nombre-personaje {
+            color: $color-principal;
+            text-transform: uppercase;
+            height: 79px;
+            margin-bottom: 0;
+            font-size: 14px;
+        }
+    }
+}
+

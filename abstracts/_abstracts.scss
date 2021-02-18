@@ -23,14 +23,30 @@
     margin-inline-end: 0px;
 }
 
+%margenes-tarjetas {
+    margin: 0 10px 40px;
+}
+
 @mixin boton {
     font-size: 16px;
     font-family: 'Roboto', sans-serif;
-    background-color: #151515;
-    color: #ffffff;
+    background-color: $color-secundario;
+    color: $color-principal;
     text-transform: uppercase;
     border: transparent;
     padding: 5px 10px;
     margin: 0 5px;
-    transition: 0.2s;
+}
+
+@mixin info-tarjetas {
+    height: 64px;
+    margin-top: 25px;
+    font-size: 14px;
+}
+
+@mixin imagenes-tarjetas {
+    height: 100%;
+    width: 100%;
+    box-shadow: 0 26px 24px -16px rgb(0 0 0 / 40%);
+    margin-bottom: 20px;
 }
