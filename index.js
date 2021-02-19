@@ -1,5 +1,10 @@
+const urlBase = "https://gateway.marvel.com/v1/public/"
+const apiKey = "05db1849d82fefc677c13a9900c87b4f"
+
+
+
 const mostrarComics = () => {
-    fetch("https://gateway.marvel.com/v1/public/comics?apikey=05db1849d82fefc677c13a9900c87b4f")
+    fetch(`${urlBase}comics?apikey=${apiKey}&orderBy=title`)
     .then(res => res.json())
     .then(data => {
         console.log(data)
