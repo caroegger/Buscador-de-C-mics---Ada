@@ -43,11 +43,15 @@
                             </select>
                         </label>
                         <label for="search-sort">ORDEN
-                            <select name="search-sort" id="busqueda-orden">
+                            <select class="select-comics" name="search-sort-comics" id="busqueda-orden">
                                 <option value="title">A-Z</option>
                                 <option value="-title">Z-A</option>
                                 <option value="-focDate">Más nuevos</option>
                                 <option value="focDate">Más viejos</option>
+                            </select>
+                            <select class="select-personajes ocultar" name="search-sort-characters" id="busqueda-orden">
+                                <option value="name">A-Z</option>
+                                <option value="-name">Z-A</option>
                             </select>
                         </label>
                     </div>
