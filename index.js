@@ -67,18 +67,17 @@ console.log(selectOrdenPersonajes)
 
 selectTipo.onchange = () => {
     console.log("entre al onchange", selectTipo.value)
-    if (selectOrden.value === "characters") {
+    if (selectTipo.value === "characters") {
         console.log("primer if")
         selectOrdenComics.classList.add("ocultar")
         selectOrdenPersonajes.classList.remove("ocultar")
     }
-    if (selectOrden.value === "comics") {
+    if (selectTipo.value === "comics") {
         selectOrdenComics.classList.remove("ocultar")
         selectOrdenPersonajes.classList.add("ocultar")
     }
 }
 
-// const orden = "orderBy"
 
 const mostrarResultados = (tipo = "comics", orden = "title") => {
 
@@ -106,18 +105,15 @@ mostrarResultados()
 
 
 
-
 const botonBuscar = document.querySelector(".boton-buscar")
 console.log(botonBuscar)
 
 botonBuscar.onclick = () => {
-    // if (selectTipo.value === "characters") {
-    //     mostrarResultados(selectTipo.value, "name")
-    // }
-    // else {
-    //     mostrarResultados(selectTipo.value, selectOrden.value)
-    // }
-    mostrarResultados(selectTipo.value, selectOrden.value)
-    console.log(selectOrden.value)
+    if (selectTipo.value === "characters") {
+        mostrarResultados(selectTipo.value, selectOrdenPersonajes.value)
+    }
+    else {
+        mostrarResultados(selectTipo.value, selectOrdenComics.value)
+    }
 }
 
