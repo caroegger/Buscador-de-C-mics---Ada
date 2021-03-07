@@ -11,7 +11,10 @@ const selectOrdenPersonajes = document.querySelector(".select-personajes")
 const inputBusqueda = document.querySelector(".input-busqueda")
 const botonBuscar = document.querySelector(".boton-buscar")
 
+const resultadosPorPagina = 20
+let paginaActual = 0
 
+let cantidadDeResultados = 0
 
 mostrarTarjetasComics = (comic) => {
     return `
@@ -48,9 +51,9 @@ selectTipo.onchange = () => {
     }
 }
 
-const mostrarResultados = (tipo = "comics", orden = "title", inputBusqueda = " ") => {
+const mostrarResultados = (tipo = "comics", orden = "title", inputBusqueda = "") => {
     let valorInput = ""
-    if (inputBusqueda !== " ") {
+    if (inputBusqueda !== "") {
         if (tipo == "comics") {
             valorInput = `&titleStartsWith=${inputBusqueda}`
         }
@@ -58,11 +61,13 @@ const mostrarResultados = (tipo = "comics", orden = "title", inputBusqueda = " "
             valorInput = `&nameStartsWith=${inputBusqueda}`
         }
     }
-    fetch(`${urlBase}${tipo}?apikey=${apiKey}&orderBy=${orden}${valorInput}`)
+    fetch(`${urlBase}${tipo}?apikey=${apiKey}&orderBy=${orden}${valorInput}&offset=${paginaActual * resultadosPorPagina}`)
     .then(res => res.json())
     .then(data => {
         console.log(data)
+        cantidadDeResultados = data.data.total
         resultados.innerHTML = ""
+        console.log(cantidadDeResultados)
         data.data.results.map((seleccionTipo) => {
             // console.log(seleccionTipo, "CONSOLE.LOG SELECCION TIPO")
             if (tipo == "comics") {
@@ -98,33 +103,41 @@ botonBuscar.onclick = () => {
     }
 }
 
+///// PAGINADO ////////////////////////////////////////////////////////
 
-// const primeraPagina = document.querySelector(".primera-pagina")
-// const paginaPrevia = document.querySelector(".pagina-previa")
-// const siguientePagina = document.querySelector(".siguiente-pagina")
-// const ultimaPagina = document.querySelector(".ultima-pagina")
-// console.log(primeraPagina, paginaPrevia, siguientePagina, ultimaPagina)
+const primeraPagina = document.querySelector(".primera-pagina")
+const paginaPrevia = document.querySelector(".pagina-previa")
+const siguientePagina = document.querySelector(".siguiente-pagina")
+const ultimaPagina = document.querySelector(".ultima-pagina")
 
-// const comicsPorPagina = 20
-// let paginaActual = 0
 
-// primeraPagina.onclick = () => {
-//     resultados.innerHTML = ""
-//     paginaActual = 0
-//     mostrarComics()
-// }
 
-// paginaPrevia.onclick = () => {
-//     resultados.innerHTML = ""
-//     paginaActual--
-//     mostrarComics()
-// }
 
-// siguientePagina.onclick = () => {
-//     resultados.innerHTML = ""
-//     paginaActual++
-//     mostrarComics()
-// }
+primeraPagina.onclick = () => {
+    resultados.innerHTML = ""
+    paginaActual = 0
+    mostrarResultados(selectTipo.value, selectOrdenComics.value, inputBusqueda.value)
+}
 
-// ultimaPagina.onclick = () => {
-// }
+paginaPrevia.onclick = () => {
+    resultados.innerHTML = ""
+    paginaActual--
+    mostrarResultados(selectTipo.value, selectOrdenComics.value, inputBusqueda.value)
+}
+
+siguientePagina.onclick = () => {
+    resultados.innerHTML = ""
+    paginaActual++
+    mostrarResultados(selectTipo.value, selectOrdenComics.value, inputBusqueda.value)
+}
+
+ultimaPagina.onclick = () => {
+    restoDeResultados = cantidadDeResultados % resultadosPorPagina
+    if (restoDeResultados > 0 ) {
+        paginaActual = (cantidadDeResultados - (restoDeResultados)) / resultadosPorPagina
+    }    
+    else {
+        paginaActual = (cantidadDeResultados / resultadosPorPagina) - 1
+    }
+    mostrarResultados(selectTipo.value, selectOrdenComics.value, inputBusqueda.value)
+}
