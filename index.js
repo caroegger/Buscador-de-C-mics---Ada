@@ -64,6 +64,9 @@ const selectOrdenPersonajes = document.querySelector(".select-personajes")
 console.log(selectOrdenComics)
 console.log(selectOrdenPersonajes)
 
+const inputBusqueda = document.querySelector(".input-busqueda")
+console.log(inputBusqueda)
+
 
 selectTipo.onchange = () => {
     console.log("entre al onchange", selectTipo.value)
@@ -79,10 +82,24 @@ selectTipo.onchange = () => {
 }
 
 
-const mostrarResultados = (tipo = "comics", orden = "title") => {
+const mostrarResultados = (tipo = "comics", orden = "title", inputBusqueda = " ") => {
+
+    //para comics -----> &titleStartsWith = Input
+    //para personajes ---> &nameStartsWith = Input
+
+    let valorInput = ""
+
+    if (inputBusqueda !== " ") {
+        if (tipo == "comics") {
+            valorInput = `&titleStartsWith=${inputBusqueda}`
+        }
+        if (tipo == "characters"){
+            valorInput = `&nameStartsWith=${inputBusqueda}`
+        }
+    }
 
 
-    fetch(`${urlBase}${tipo}?apikey=${apiKey}&orderBy=${orden}`)
+    fetch(`${urlBase}${tipo}?apikey=${apiKey}&orderBy=${orden}${valorInput}`)
     .then(res => res.json())
     .then(data => {
         console.log(data)
@@ -109,11 +126,23 @@ const botonBuscar = document.querySelector(".boton-buscar")
 console.log(botonBuscar)
 
 botonBuscar.onclick = () => {
-    if (selectTipo.value === "characters") {
-        mostrarResultados(selectTipo.value, selectOrdenPersonajes.value)
+    console.log(inputBusqueda.value)
+
+    if (inputBusqueda.value != "") {
+        if (selectTipo.value === "characters") {
+            mostrarResultados(selectTipo.value, selectOrdenPersonajes.value, inputBusqueda.value)
+        }
+        else {
+            mostrarResultados(selectTipo.value, selectOrdenComics.value, inputBusqueda.value)
+        }
     }
     else {
-        mostrarResultados(selectTipo.value, selectOrdenComics.value)
+        if (selectTipo.value === "characters") {
+            mostrarResultados(selectTipo.value, selectOrdenPersonajes.value)
+        }
+        else {
+            mostrarResultados(selectTipo.value, selectOrdenComics.value)
+        }
     }
 }
 
