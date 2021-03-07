@@ -13,8 +13,8 @@ const botonBuscar = document.querySelector(".boton-buscar")
 
 const resultadosPorPagina = 20
 let paginaActual = 0
-
 let cantidadDeResultados = 0
+
 
 mostrarTarjetasComics = (comic) => {
     return `
@@ -85,6 +85,9 @@ const mostrarResultados = (tipo = "comics", orden = "title", inputBusqueda = "")
 mostrarResultados()
 
 botonBuscar.onclick = () => {
+
+    paginaActual = 0
+
     if (inputBusqueda.value != "") {
         if (selectTipo.value === "characters") {
             mostrarResultados(selectTipo.value, selectOrdenPersonajes.value, inputBusqueda.value)
@@ -109,7 +112,6 @@ const primeraPagina = document.querySelector(".primera-pagina")
 const paginaPrevia = document.querySelector(".pagina-previa")
 const siguientePagina = document.querySelector(".siguiente-pagina")
 const ultimaPagina = document.querySelector(".ultima-pagina")
-
 
 
 
