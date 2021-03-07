@@ -97,3 +97,34 @@ botonBuscar.onclick = () => {
         }
     }
 }
+
+
+// const primeraPagina = document.querySelector(".primera-pagina")
+// const paginaPrevia = document.querySelector(".pagina-previa")
+// const siguientePagina = document.querySelector(".siguiente-pagina")
+// const ultimaPagina = document.querySelector(".ultima-pagina")
+// console.log(primeraPagina, paginaPrevia, siguientePagina, ultimaPagina)
+
+// const comicsPorPagina = 20
+// let paginaActual = 0
+
+// primeraPagina.onclick = () => {
+//     resultados.innerHTML = ""
+//     paginaActual = 0
+//     mostrarComics()
+// }
+
+// paginaPrevia.onclick = () => {
+//     resultados.innerHTML = ""
+//     paginaActual--
+//     mostrarComics()
+// }
+
+// siguientePagina.onclick = () => {
+//     resultados.innerHTML = ""
+//     paginaActual++
+//     mostrarComics()
+// }
+
+// ultimaPagina.onclick = () => {
+// }
