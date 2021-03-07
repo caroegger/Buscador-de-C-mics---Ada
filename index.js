@@ -3,33 +3,17 @@ const apiKey = "05db1849d82fefc677c13a9900c87b4f"
 
 const resultados = document.querySelector(".resultados")
 
+const selectTipo = document.querySelector("#busqueda-tipo")
+const selectOrden = document.querySelector("#busqueda-orden")
+const selectOrdenComics = document.querySelector(".select-comics")
+const selectOrdenPersonajes = document.querySelector(".select-personajes")
 
-// const mostrarComics = () => {
-//     fetch(`${urlBase}characters?apikey=${apiKey}`)
-//     .then(res => res.json())
-//     .then(data => {
-//         console.log(data)
-//         characters = data.data.results
-//         const resultados = document.querySelector(".resultados")
-//         characters.map((character) => {
-//         resultados.innerHTML += `
-//             <div class="tarjeta-personaje">
-//               <div class="contenedor-imagen-personaje">
-//                  <img src="${character.thumbnail.path}.jpg" class="imagen-personaje">
-//               </div>
-//               <div class="contenedor-nombre-personaje">
-//                  <h3 class="nombre-personaje">${character.name}</h3>
-//               </div>
-//              </div>
-//         `
-//         })
-//     })
-// }
+const inputBusqueda = document.querySelector(".input-busqueda")
+const botonBuscar = document.querySelector(".boton-buscar")
 
-// mostrarComics()
+
 
 mostrarTarjetasComics = (comic) => {
-    // console.log(comic, "CONSOLE LOG DE COMIC")
     return `
     <div class="tarjeta-comic">
         <div class="contenedor-imagen-comic">
@@ -53,25 +37,8 @@ mostrarTarjetasPersonajes = (character) => {
     `
 }
 
-const selectTipo = document.querySelector("#busqueda-tipo")
-console.log(selectTipo.value, "VALOR DEL SELECT")
-
-const selectOrden = document.querySelector("#busqueda-orden")
-console.log(selectOrden.value)
-
-const selectOrdenComics = document.querySelector(".select-comics")
-const selectOrdenPersonajes = document.querySelector(".select-personajes")
-console.log(selectOrdenComics)
-console.log(selectOrdenPersonajes)
-
-const inputBusqueda = document.querySelector(".input-busqueda")
-console.log(inputBusqueda)
-
-
 selectTipo.onchange = () => {
-    console.log("entre al onchange", selectTipo.value)
     if (selectTipo.value === "characters") {
-        console.log("primer if")
         selectOrdenComics.classList.add("ocultar")
         selectOrdenPersonajes.classList.remove("ocultar")
     }
@@ -81,14 +48,8 @@ selectTipo.onchange = () => {
     }
 }
 
-
 const mostrarResultados = (tipo = "comics", orden = "title", inputBusqueda = " ") => {
-
-    //para comics -----> &titleStartsWith = Input
-    //para personajes ---> &nameStartsWith = Input
-
     let valorInput = ""
-
     if (inputBusqueda !== " ") {
         if (tipo == "comics") {
             valorInput = `&titleStartsWith=${inputBusqueda}`
@@ -97,8 +58,6 @@ const mostrarResultados = (tipo = "comics", orden = "title", inputBusqueda = " "
             valorInput = `&nameStartsWith=${inputBusqueda}`
         }
     }
-
-
     fetch(`${urlBase}${tipo}?apikey=${apiKey}&orderBy=${orden}${valorInput}`)
     .then(res => res.json())
     .then(data => {
@@ -120,14 +79,7 @@ const mostrarResultados = (tipo = "comics", orden = "title", inputBusqueda = " "
 
 mostrarResultados()
 
-
-
-const botonBuscar = document.querySelector(".boton-buscar")
-console.log(botonBuscar)
-
 botonBuscar.onclick = () => {
-    console.log(inputBusqueda.value)
-
     if (inputBusqueda.value != "") {
         if (selectTipo.value === "characters") {
             mostrarResultados(selectTipo.value, selectOrdenPersonajes.value, inputBusqueda.value)
@@ -145,4 +97,3 @@ botonBuscar.onclick = () => {
         }
     }
 }
-
