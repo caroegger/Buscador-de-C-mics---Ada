@@ -15,64 +15,13 @@ const resultadosPorPagina = 20
 let paginaActual = 0
 let cantidadDeResultados = 0
 
-
-///// PAGINADO Y BOTONES ////////////////////////////////////////////////////////
-
 const primeraPagina = document.querySelector(".primera-pagina")
 const paginaPrevia = document.querySelector(".pagina-previa")
-const siguientePagina = document.querySelector(".siguiente-pagina")
+const paginaSiguiente = document.querySelector(".siguiente-pagina")
 const ultimaPagina = document.querySelector(".ultima-pagina")
 
 
-primeraPagina.onclick = () => {
-    resultados.innerHTML = ""
-    paginaActual = 0
-    buscarResultados()
-}
-
-paginaPrevia.onclick = () => {
-    resultados.innerHTML = ""
-    paginaActual--
-    buscarResultados()
-}
-
-siguientePagina.onclick = () => {
-    resultados.innerHTML = ""
-    paginaActual++
-    buscarResultados()
-}
-
-ultimaPagina.onclick = () => {
-    restoDeResultados = cantidadDeResultados % resultadosPorPagina
-    if (restoDeResultados > 0 ) {
-        paginaActual = (cantidadDeResultados - (restoDeResultados)) / resultadosPorPagina
-    }    
-    else {
-        paginaActual = (cantidadDeResultados / resultadosPorPagina) - 1
-    }
-    buscarResultados()
-}
-
-
-deshabilitarOHabilitarBotones = (offset = "0", cantidadDeResultados = "0") => {
-    if (paginaActual == 0) {
-        primeraPagina.disabled = true
-        paginaPrevia.disabled = true
-    }
-    else {
-        primeraPagina.disabled = false
-        paginaPrevia.disabled = false
-    }
-
-    if (offset + 20 >= cantidadDeResultados) {
-        siguientePagina.disabled = true
-        ultimaPagina.disabled = true
-    }
-    else {
-        siguientePagina.disabled = false
-        ultimaPagina.disabled = false
-    }
-}
+///////////////////////////////////////////////////////////////////////////////
 
 
 ///// MOSTRAR TARJETAS ////////////////////////////////////////////////////////
@@ -103,6 +52,7 @@ mostrarTarjetasPersonajes = (character) => {
 
 
 ///// MOSTRAR RESULTADOS ////////////////////////////////////////////////////////
+
 
 selectTipo.onchange = () => {
     if (selectTipo.value === "characters") {
@@ -153,6 +103,7 @@ mostrarResultados()
 
 ///// BUSQUEDA DE RESULTADOS ////////////////////////////////////////////////////////
 
+
 const buscarResultados = () => {
     if (inputBusqueda.value != "") {
         if (selectTipo.value === "characters") {
@@ -172,9 +123,62 @@ const buscarResultados = () => {
     }
 }
 
-
 botonBuscar.onclick = () => {
     paginaActual = 0
     buscarResultados()
 }
 
+
+///// PAGINADO Y BOTONES ////////////////////////////////////////////////////////
+
+
+primeraPagina.onclick = () => {
+    resultados.innerHTML = ""
+    paginaActual = 0
+    buscarResultados()
+}
+
+paginaPrevia.onclick = () => {
+    resultados.innerHTML = ""
+    paginaActual--
+    buscarResultados()
+}
+
+paginaSiguiente.onclick = () => {
+    resultados.innerHTML = ""
+    paginaActual++
+    buscarResultados()
+}
+
+ultimaPagina.onclick = () => {
+    restoDeResultados = cantidadDeResultados % resultadosPorPagina
+    if (restoDeResultados > 0 ) {
+        paginaActual = (cantidadDeResultados - (restoDeResultados)) / resultadosPorPagina
+    }    
+    else {
+        paginaActual = (cantidadDeResultados / resultadosPorPagina) - 1
+    }
+    buscarResultados()
+}
+
+deshabilitarOHabilitarBotones = (offset = "0", cantidadDeResultados = "0") => {
+    if (paginaActual == 0) {
+        primeraPagina.disabled = true
+        paginaPrevia.disabled = true
+    }
+    else {
+        primeraPagina.disabled = false
+        paginaPrevia.disabled = false
+    }
+
+    if (offset + 20 >= cantidadDeResultados) {
+        paginaSiguiente
+    .disabled = true
+        ultimaPagina.disabled = true
+    }
+    else {
+        paginaSiguiente
+    .disabled = false
+        ultimaPagina.disabled = false
+    }
+}
