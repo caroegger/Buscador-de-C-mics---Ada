@@ -54,7 +54,7 @@ ultimaPagina.onclick = () => {
 }
 
 
-deshabilitarOHabilitarBotones = () => {
+deshabilitarOHabilitarBotones = (offset = "0", cantidadDeResultados = "0") => {
     if (paginaActual == 0) {
         primeraPagina.disabled = true
         paginaPrevia.disabled = true
@@ -62,6 +62,15 @@ deshabilitarOHabilitarBotones = () => {
     else {
         primeraPagina.disabled = false
         paginaPrevia.disabled = false
+    }
+
+    if (offset + 20 >= cantidadDeResultados) {
+        siguientePagina.disabled = true
+        ultimaPagina.disabled = true
+    }
+    else {
+        siguientePagina.disabled = false
+        ultimaPagina.disabled = false
     }
 }
 
@@ -107,7 +116,6 @@ selectTipo.onchange = () => {
 }
 
 const mostrarResultados = (tipo = "comics", orden = "title", inputBusqueda = "") => {
-    deshabilitarOHabilitarBotones()
     let valorInput = ""
     if (inputBusqueda !== "") {
         if (tipo == "comics") {
@@ -135,6 +143,8 @@ const mostrarResultados = (tipo = "comics", orden = "title", inputBusqueda = "")
                 mostrarTarjetasPersonajes(seleccionTipo)
             }
         })
+        let offset = data.data.offset
+        deshabilitarOHabilitarBotones(offset, cantidadDeResultados)
     })
 }
 
