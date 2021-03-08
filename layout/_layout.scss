@@ -87,6 +87,10 @@ label {
 
 .paginado {
     @extend %centrar-flex;
+    .boton-paginado:disabled {
+        color: #757575;
+        border-color: #757575;
+    }
 }
 
 footer {
