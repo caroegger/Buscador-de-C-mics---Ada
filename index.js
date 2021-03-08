@@ -16,6 +16,58 @@ let paginaActual = 0
 let cantidadDeResultados = 0
 
 
+///// PAGINADO Y BOTONES ////////////////////////////////////////////////////////
+
+const primeraPagina = document.querySelector(".primera-pagina")
+const paginaPrevia = document.querySelector(".pagina-previa")
+const siguientePagina = document.querySelector(".siguiente-pagina")
+const ultimaPagina = document.querySelector(".ultima-pagina")
+
+
+primeraPagina.onclick = () => {
+    resultados.innerHTML = ""
+    paginaActual = 0
+    buscarResultados()
+}
+
+paginaPrevia.onclick = () => {
+    resultados.innerHTML = ""
+    paginaActual--
+    buscarResultados()
+}
+
+siguientePagina.onclick = () => {
+    resultados.innerHTML = ""
+    paginaActual++
+    buscarResultados()
+}
+
+ultimaPagina.onclick = () => {
+    restoDeResultados = cantidadDeResultados % resultadosPorPagina
+    if (restoDeResultados > 0 ) {
+        paginaActual = (cantidadDeResultados - (restoDeResultados)) / resultadosPorPagina
+    }    
+    else {
+        paginaActual = (cantidadDeResultados / resultadosPorPagina) - 1
+    }
+    buscarResultados()
+}
+
+
+deshabilitarOHabilitarBotones = () => {
+    if (paginaActual == 0) {
+        primeraPagina.disabled = true
+        paginaPrevia.disabled = true
+    }
+    else {
+        primeraPagina.disabled = false
+        paginaPrevia.disabled = false
+    }
+}
+
+
+///// MOSTRAR TARJETAS ////////////////////////////////////////////////////////
+
 mostrarTarjetasComics = (comic) => {
     return `
     <div class="tarjeta-comic">
@@ -40,6 +92,9 @@ mostrarTarjetasPersonajes = (character) => {
     `
 }
 
+
+///// MOSTRAR RESULTADOS ////////////////////////////////////////////////////////
+
 selectTipo.onchange = () => {
     if (selectTipo.value === "characters") {
         selectOrdenComics.classList.add("ocultar")
@@ -52,6 +107,7 @@ selectTipo.onchange = () => {
 }
 
 const mostrarResultados = (tipo = "comics", orden = "title", inputBusqueda = "") => {
+    deshabilitarOHabilitarBotones()
     let valorInput = ""
     if (inputBusqueda !== "") {
         if (tipo == "comics") {
@@ -85,7 +141,9 @@ const mostrarResultados = (tipo = "comics", orden = "title", inputBusqueda = "")
 mostrarResultados()
 
 
-const busquedaResultados = () => {
+///// BUSQUEDA DE RESULTADOS ////////////////////////////////////////////////////////
+
+const buscarResultados = () => {
     if (inputBusqueda.value != "") {
         if (selectTipo.value === "characters") {
             mostrarResultados(selectTipo.value, selectOrdenPersonajes.value, inputBusqueda.value)
@@ -107,43 +165,6 @@ const busquedaResultados = () => {
 
 botonBuscar.onclick = () => {
     paginaActual = 0
-    busquedaResultados()
+    buscarResultados()
 }
 
-///// PAGINADO ////////////////////////////////////////////////////////
-
-const primeraPagina = document.querySelector(".primera-pagina")
-const paginaPrevia = document.querySelector(".pagina-previa")
-const siguientePagina = document.querySelector(".siguiente-pagina")
-const ultimaPagina = document.querySelector(".ultima-pagina")
-
-
-
-primeraPagina.onclick = () => {
-    resultados.innerHTML = ""
-    paginaActual = 0
-    busquedaResultados()
-}
-
-paginaPrevia.onclick = () => {
-    resultados.innerHTML = ""
-    paginaActual--
-    busquedaResultados()
-}
-
-siguientePagina.onclick = () => {
-    resultados.innerHTML = ""
-    paginaActual++
-    busquedaResultados()
-}
-
-ultimaPagina.onclick = () => {
-    restoDeResultados = cantidadDeResultados % resultadosPorPagina
-    if (restoDeResultados > 0 ) {
-        paginaActual = (cantidadDeResultados - (restoDeResultados)) / resultadosPorPagina
-    }    
-    else {
-        paginaActual = (cantidadDeResultados / resultadosPorPagina) - 1
-    }
-    busquedaResultados()
-}
