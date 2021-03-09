@@ -30,7 +30,7 @@ mostrarTarjetasComics = (comic) => {
     return `
     <div class="tarjeta-comic">
         <div class="contenedor-imagen-comic">
-            <img src="${comic.thumbnail.path}.jpg" class="imagen-comic">
+            <img src="${comic.thumbnail.path}.jpg" class="imagen-comic" data-id="${comic.id}">
         </div>
         <h3 class="titulo-comic">${comic.title}</h3>
     </div>
@@ -39,7 +39,7 @@ mostrarTarjetasComics = (comic) => {
 
 mostrarTarjetasPersonajes = (character) => {
     return `
-        <div class="tarjeta-personaje">
+        <div class="tarjeta-personaje" data-id="${character.id}">
             <div class="contenedor-imagen-personaje">
                 <img src="${character.thumbnail.path}.jpg" class="imagen-personaje">
             </div>
@@ -181,4 +181,34 @@ deshabilitarOHabilitarBotones = (offset = "0", cantidadDeResultados = "0") => {
     .disabled = false
         ultimaPagina.disabled = false
     }
+}
+
+
+///// MOSTRAR INFO DE PERSONAJES O COMICS ////////////////////////////////////////////////////////
+
+const mostrarInfoComic = () => {
+    fetch(`${urlBase}/comics/${91992}?apikey=${apiKey}`)
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        data.data.results.map (data => {
+            const informacionPersonaje = document.querySelector(".contenedor-info-comic")
+            informacionPersonaje.classList.remove("ocultar")
+            informacionPersonaje.innerHTML = 
+            `
+            <div class="contenedor-imagen-info-comic">
+                <img class="imagen-info-comic" src="${data.thumbnail.path}.jpg">
+            </div>
+            <div class="info-comic">
+                <h2 class="titulo-comic">${data.title}</h2>
+                <h3 class="subtitulo-info">Publicado:</h3>
+                <p class="detalle-info">(fecha)</p>
+                <h3 class="subtitulo-info">Guionistas:</h3>
+                <p class="detalle-info">${data.creators.items[0].name}</p>
+                <h3 class="subtitulo-info">Descripcion:</h3>
+                <p class="detalle-info">${data.description}</p>
+            </div>
+            `
+        })
+    })
 }

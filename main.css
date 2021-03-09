@@ -28,6 +28,13 @@ body {
   margin: 0 10px 40px;
 }
 
+.info-comic .detalles-info, .info-comic .subtitulo-info {
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
 .contenedor-logo {
   display: flex;
   justify-content: center;
@@ -163,6 +170,20 @@ body {
   font-size: 14px;
 }
 
+.contenedor-info-comic {
+  display: flex;
+  margin: 80px 10px 50px;
+}
+
+.imagen-info-comic {
+  max-width: 350px;
+  margin-right: 50px;
+}
+
+.info-comic .subtitulo-info {
+  font-size: 1.17em;
+  font-weight: bold;
+}
 .contenedor-busqueda, .contenedor-filtros-busqueda {
   display: flex;
   justify-content: space-between;
@@ -190,6 +211,13 @@ body {
 
 .tarjeta-comic, .tarjeta-personaje {
   margin: 0 10px 40px;
+}
+
+.info-comic .subtitulo-info, .info-comic .detalles-info {
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
 }
 
 * {

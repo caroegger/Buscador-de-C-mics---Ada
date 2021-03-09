@@ -118,3 +118,24 @@
     }
 }
 
+
+.contenedor-info-comic {
+    display: flex;
+    margin: 80px 10px 50px;
+}
+
+.imagen-info-comic {
+    max-width: 350px;
+    margin-right: 50px;
+}
+
+.info-comic {
+    .subtitulo-info {
+        @extend %margenes-info;
+        font-size: 1.17em;
+        font-weight: bold;
+    }
+    .detalles-info {
+        @extend %margenes-info;
+    }
+}
