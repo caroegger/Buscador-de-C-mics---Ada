@@ -95,6 +95,19 @@ const mostrarResultados = (tipo = "comics", orden = "title", inputBusqueda = "")
         })
         let offset = data.data.offset
         deshabilitarOHabilitarBotones(offset, cantidadDeResultados)
+
+        const tarjetasComic = document.querySelectorAll(".tarjeta-comic")
+        console.log(tarjetasComic)
+
+        tarjetasComic.forEach(tarjeta => {
+        console.log(tarjeta)
+        tarjeta.onclick = (e) => {
+            console.log("CLICK")
+            comicId = e.target.dataset.id
+            resultados.innerHTML = ""
+            mostrarInfoComic(comicId)
+            }
+        })
     })
 }
 
@@ -186,8 +199,8 @@ deshabilitarOHabilitarBotones = (offset = "0", cantidadDeResultados = "0") => {
 
 ///// MOSTRAR INFO DE PERSONAJES O COMICS ////////////////////////////////////////////////////////
 
-const mostrarInfoComic = () => {
-    fetch(`${urlBase}/comics/${91992}?apikey=${apiKey}`)
+const mostrarInfoComic = (comicId) => {
+    fetch(`${urlBase}/comics/${comicId}?apikey=${apiKey}`)
     .then(res => res.json())
     .then(data => {
         console.log(data)
