@@ -39,9 +39,9 @@ mostrarTarjetasComics = (comic) => {
 
 mostrarTarjetasPersonajes = (character) => {
     return `
-        <div class="tarjeta-personaje" data-id="${character.id}">
+        <div class="tarjeta-personaje">
             <div class="contenedor-imagen-personaje">
-                <img src="${character.thumbnail.path}.jpg" class="imagen-personaje">
+                <img src="${character.thumbnail.path}.jpg" class="imagen-personaje" data-id="${character.id}">
             </div>
             <div class="contenedor-nombre-personaje">
                 <h3 class="nombre-personaje">${character.name}</h3>
@@ -96,6 +96,7 @@ const mostrarResultados = (tipo = "comics", orden = "title", inputBusqueda = "")
         let offset = data.data.offset
         deshabilitarOHabilitarBotones(offset, cantidadDeResultados)
         clickearComicParaVerInfo()
+        clickearPersonajeParaVerInfo()
     })
 }
 
@@ -215,10 +216,10 @@ const mostrarInfoComic = (comicId) => {
 }
 
 const clickearComicParaVerInfo = () => {
-    const tarjetasComic = document.querySelectorAll(".tarjeta-comic")
-    console.log(tarjetasComic)
+    const tarjetasComics = document.querySelectorAll(".tarjeta-comic")
+    console.log(tarjetasComics)
 
-    tarjetasComic.forEach(tarjeta => {
+    tarjetasComics.forEach(tarjeta => {
     // console.log(tarjeta)
     tarjeta.onclick = (e) => {
         console.log("CLICK")
@@ -229,8 +230,8 @@ const clickearComicParaVerInfo = () => {
     })
 }
 
-const mostrarInfoPersonaje = () => {
-    fetch(`${urlBase}/characters/${1017100}?apikey=${apiKey}`)
+const mostrarInfoPersonaje = (characterId) => {
+    fetch(`${urlBase}/characters/${characterId}?apikey=${apiKey}`)
     .then(res => res.json())
     .then(data => {
         console.log(data)
@@ -251,4 +252,19 @@ const mostrarInfoPersonaje = () => {
     })
 }
 
-mostrarInfoPersonaje()
+
+
+const clickearPersonajeParaVerInfo = () => {
+    const tarjetasPersonajes = document.querySelectorAll(".tarjeta-personaje")
+    console.log(tarjetasPersonajes)
+
+    tarjetasPersonajes.forEach(tarjeta => {
+    // console.log(tarjeta)
+    tarjeta.onclick = (e) => {
+        console.log("CLICK")
+        characterId = e.target.dataset.id
+        resultados.innerHTML = ""
+        mostrarInfoPersonaje(characterId)
+        }
+    })
+}
