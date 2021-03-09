@@ -291,7 +291,6 @@ label select option {
   display: flex;
   flex-wrap: wrap;
   margin-top: 40px;
-  min-height: 300px;
 }
 
 .paginado .boton-paginado:disabled {
