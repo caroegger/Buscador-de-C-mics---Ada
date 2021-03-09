@@ -95,19 +95,7 @@ const mostrarResultados = (tipo = "comics", orden = "title", inputBusqueda = "")
         })
         let offset = data.data.offset
         deshabilitarOHabilitarBotones(offset, cantidadDeResultados)
-
-        const tarjetasComic = document.querySelectorAll(".tarjeta-comic")
-        console.log(tarjetasComic)
-
-        tarjetasComic.forEach(tarjeta => {
-        console.log(tarjeta)
-        tarjeta.onclick = (e) => {
-            console.log("CLICK")
-            comicId = e.target.dataset.id
-            resultados.innerHTML = ""
-            mostrarInfoComic(comicId)
-            }
-        })
+        clickearTarjetaParaVerInfo()
     })
 }
 
@@ -223,5 +211,20 @@ const mostrarInfoComic = (comicId) => {
             </div>
             `
         })
+    })
+}
+
+const clickearTarjetaParaVerInfo = () => {
+    const tarjetasComic = document.querySelectorAll(".tarjeta-comic")
+    console.log(tarjetasComic)
+
+    tarjetasComic.forEach(tarjeta => {
+    console.log(tarjeta)
+    tarjeta.onclick = (e) => {
+        console.log("CLICK")
+        comicId = e.target.dataset.id
+        resultados.innerHTML = ""
+        mostrarInfoComic(comicId)
+        }
     })
 }
