@@ -17,7 +17,7 @@ body {
   align-items: center;
 }
 
-.titulo-resultados, main .seccion-busqueda .titulo-busqueda {
+.titulo-resultados, main .seccion-busqueda .titulo-busqueda, .info-personaje .nombre-personaje {
   margin-block-start: 0.83em;
   margin-block-end: 0.83em;
   margin-inline-start: 0px;
@@ -28,7 +28,7 @@ body {
   margin: 0 10px 40px;
 }
 
-.info-comic .detalles-info, .info-comic .subtitulo-info {
+.info-personaje .descripcion-personaje, .info-comic .detalles-info, .info-comic .subtitulo-info {
   margin-block-start: 1em;
   margin-block-end: 1em;
   margin-inline-start: 0px;
@@ -184,6 +184,11 @@ body {
   font-size: 1.17em;
   font-weight: bold;
 }
+.contenedor-info-personaje {
+  display: flex;
+  margin: 80px 10px 50px;
+}
+
 .contenedor-busqueda, .contenedor-filtros-busqueda {
   display: flex;
   justify-content: space-between;
@@ -202,7 +207,7 @@ body {
   align-items: center;
 }
 
-.titulo-resultados, main .seccion-busqueda .titulo-busqueda {
+.titulo-resultados, main .seccion-busqueda .titulo-busqueda, .info-personaje .nombre-personaje {
   margin-block-start: 0.83em;
   margin-block-end: 0.83em;
   margin-inline-start: 0px;
@@ -213,7 +218,7 @@ body {
   margin: 0 10px 40px;
 }
 
-.info-comic .subtitulo-info, .info-comic .detalles-info {
+.info-comic .subtitulo-info, .info-comic .detalles-info, .info-personaje .descripcion-personaje {
   margin-block-start: 1em;
   margin-block-end: 1em;
   margin-inline-start: 0px;

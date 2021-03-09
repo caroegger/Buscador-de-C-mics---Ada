@@ -95,7 +95,7 @@ const mostrarResultados = (tipo = "comics", orden = "title", inputBusqueda = "")
         })
         let offset = data.data.offset
         deshabilitarOHabilitarBotones(offset, cantidadDeResultados)
-        clickearTarjetaParaVerInfo()
+        clickearComicParaVerInfo()
     })
 }
 
@@ -193,9 +193,9 @@ const mostrarInfoComic = (comicId) => {
     .then(data => {
         console.log(data)
         data.data.results.map (data => {
-            const informacionPersonaje = document.querySelector(".contenedor-info-comic")
-            informacionPersonaje.classList.remove("ocultar")
-            informacionPersonaje.innerHTML = 
+            const informacionComic = document.querySelector(".contenedor-info-comic")
+            informacionComic.classList.remove("ocultar")
+            informacionComic.innerHTML = 
             `
             <div class="contenedor-imagen-info-comic">
                 <img class="imagen-info-comic" src="${data.thumbnail.path}.jpg">
@@ -214,12 +214,12 @@ const mostrarInfoComic = (comicId) => {
     })
 }
 
-const clickearTarjetaParaVerInfo = () => {
+const clickearComicParaVerInfo = () => {
     const tarjetasComic = document.querySelectorAll(".tarjeta-comic")
     console.log(tarjetasComic)
 
     tarjetasComic.forEach(tarjeta => {
-    console.log(tarjeta)
+    // console.log(tarjeta)
     tarjeta.onclick = (e) => {
         console.log("CLICK")
         comicId = e.target.dataset.id
@@ -228,3 +228,27 @@ const clickearTarjetaParaVerInfo = () => {
         }
     })
 }
+
+const mostrarInfoPersonaje = () => {
+    fetch(`${urlBase}/characters/${1017100}?apikey=${apiKey}`)
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        data.data.results.map (data => {
+            const informacionPersonaje = document.querySelector(".contenedor-info-personaje")
+            informacionPersonaje.classList.remove("ocultar")
+            informacionPersonaje.innerHTML = 
+            `
+            <div class="contenedor-imagen-info-comic">
+                <img class="imagen-info-comic" src="${data.thumbnail.path}.jpg">
+            </div>
+            <div class="info-personaje">
+                <h2 class="nombre-personaje">${data.name}</h2>
+                <p class="descripcion-personaje">${data.description}</p>
+            </div>
+            `
+        })
+    })
+}
+
+mostrarInfoPersonaje()

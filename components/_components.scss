@@ -139,3 +139,17 @@
         @extend %margenes-info;
     }
 }
+
+.contenedor-info-personaje {
+    display: flex;
+    margin: 80px 10px 50px;
+}
+
+.info-personaje {
+    .nombre-personaje { 
+        @extend %margenes-titulos;
+    }
+    .descripcion-personaje {
+        @extend %margenes-info;
+    }
+}
