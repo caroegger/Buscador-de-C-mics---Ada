@@ -282,7 +282,7 @@ const clickearPersonajeParaVerInfo = () => {
 
 ///// MOSTRAR CANTIDAD DE RESULTADOS DE LA BUSQUEDA ////////////////////////////////////////////////////////
 
-const contenedorNumeroDeResultados = document.querySelector(".numero-de-resultados")
+const contenedorNumeroDeResultados = document.querySelector(".contenedor-numero-de-resultados")
 console.log(contenedorNumeroDeResultados)
 
 const mostrarCantidadDeResultados = (cantidadDeResultados) => {
