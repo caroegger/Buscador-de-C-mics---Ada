@@ -97,6 +97,7 @@ const mostrarResultados = (tipo = "comics", orden = "title", inputBusqueda = "")
         deshabilitarOHabilitarBotones(offset, cantidadDeResultados)
         clickearComicParaVerInfo()
         clickearPersonajeParaVerInfo()
+        mostrarCantidadDeResultados(cantidadDeResultados)
     })
 }
 
@@ -279,3 +280,11 @@ const clickearPersonajeParaVerInfo = () => {
     })
 }
 
+///// MOSTRAR CANTIDAD DE RESULTADOS DE LA BUSQUEDA ////////////////////////////////////////////////////////
+
+const contenedorNumeroDeResultados = document.querySelector(".numero-de-resultados")
+console.log(contenedorNumeroDeResultados)
+
+const mostrarCantidadDeResultados = (cantidadDeResultados) => {
+    contenedorNumeroDeResultados.innerHTML = `${cantidadDeResultados}`
+}
