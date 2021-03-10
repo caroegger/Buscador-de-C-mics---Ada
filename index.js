@@ -194,6 +194,7 @@ const mostrarInfoComic = (comicId) => {
     .then(data => {
         console.log(data)
         data.data.results.map (data => {
+            const guionistas = data.creators.items.filter((guionista) => guionista.role === "writer").map((guionista) => guionista.name)
             const informacionComic = document.querySelector(".contenedor-info-comic")
             informacionComic.classList.remove("ocultar")
             informacionComic.innerHTML = 
@@ -206,7 +207,7 @@ const mostrarInfoComic = (comicId) => {
                 <h3 class="subtitulo-info">Publicado:</h3>
                 <p class="detalle-info">(fecha)</p>
                 <h3 class="subtitulo-info">Guionistas:</h3>
-                <p class="detalle-info">${data.creators.items[0].name}</p>
+                <p class="detalle-info">${guionistas}</p>
                 <h3 class="subtitulo-info">Descripcion:</h3>
                 <p class="detalle-info">${data.description}</p>
             </div>
@@ -268,3 +269,4 @@ const clickearPersonajeParaVerInfo = () => {
         }
     })
 }
+
