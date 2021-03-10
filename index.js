@@ -195,8 +195,17 @@ const mostrarInfoComic = (comicId) => {
         console.log(data)
         data.data.results.map (data => {
             const guionistas = data.creators.items.filter((guionista) => guionista.role === "writer").map((guionista) => guionista.name)
+
+            const publicacionFormatoAmericano = data.modified.split("T")[0]
+            const dia = publicacionFormatoAmericano.slice(8, 10)
+            const mes = publicacionFormatoAmericano.slice(5, 7)
+            const anio = publicacionFormatoAmericano.slice(0, 4)
+            const publicacionFormatoLatinoamericano = `${dia}/${mes}/${anio}`
+
+
             const informacionComic = document.querySelector(".contenedor-info-comic")
             informacionComic.classList.remove("ocultar")
+
             informacionComic.innerHTML = 
             `
             <div class="contenedor-imagen-info-comic">
@@ -205,7 +214,7 @@ const mostrarInfoComic = (comicId) => {
             <div class="info-comic">
                 <h2 class="titulo-comic">${data.title}</h2>
                 <h3 class="subtitulo-info">Publicado:</h3>
-                <p class="detalle-info">(fecha)</p>
+                <p class="detalle-info">${publicacionFormatoLatinoamericano}</p>
                 <h3 class="subtitulo-info">Guionistas:</h3>
                 <p class="detalle-info">${guionistas}</p>
                 <h3 class="subtitulo-info">Descripcion:</h3>
