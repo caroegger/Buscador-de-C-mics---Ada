@@ -20,11 +20,14 @@ const paginaPrevia = document.querySelector(".pagina-previa")
 const paginaSiguiente = document.querySelector(".siguiente-pagina")
 const ultimaPagina = document.querySelector(".ultima-pagina")
 
+const contenedorNumeroDeResultados = document.querySelector(".contenedor-numero-de-resultados")
+
 
 ///////////////////////////////////////////////////////////////////////////////
 
 
 ///// MOSTRAR TARJETAS ////////////////////////////////////////////////////////
+
 
 mostrarTarjetasComics = (comic) => {
     return `
@@ -78,12 +81,10 @@ const mostrarResultados = (tipo = "comics", orden = "title", inputBusqueda = "")
     fetch(`${urlBase}${tipo}?apikey=${apiKey}&orderBy=${orden}${valorInput}&offset=${paginaActual * resultadosPorPagina}`)
     .then(res => res.json())
     .then(data => {
-        console.log(data)
         cantidadDeResultados = data.data.total
         resultados.innerHTML = ""
-        console.log(cantidadDeResultados)
+
         data.data.results.map((seleccionTipo) => {
-            // console.log(seleccionTipo, "CONSOLE.LOG SELECCION TIPO")
             if (tipo == "comics") {
                 return resultados.innerHTML +=
                 mostrarTarjetasComics(seleccionTipo)
@@ -189,11 +190,11 @@ deshabilitarOHabilitarBotones = (offset = "0", cantidadDeResultados = "0") => {
 
 ///// MOSTRAR INFO DE PERSONAJES O COMICS ////////////////////////////////////////////////////////
 
+
 const mostrarInfoComic = (comicId) => {
     fetch(`${urlBase}/comics/${comicId}?apikey=${apiKey}`)
     .then(res => res.json())
     .then(data => {
-        console.log(data)
         data.data.results.map (data => {
             const guionistas = data.creators.items.filter((guionista) => guionista.role === "writer").map((guionista) => guionista.name)
 
@@ -228,12 +229,9 @@ const mostrarInfoComic = (comicId) => {
 
 const clickearComicParaVerInfo = () => {
     const tarjetasComics = document.querySelectorAll(".tarjeta-comic")
-    console.log(tarjetasComics)
 
     tarjetasComics.forEach(tarjeta => {
-    // console.log(tarjeta)
     tarjeta.onclick = (e) => {
-        console.log("CLICK")
         comicId = e.target.dataset.id
         resultados.innerHTML = ""
         mostrarInfoComic(comicId)
@@ -245,7 +243,6 @@ const mostrarInfoPersonaje = (characterId) => {
     fetch(`${urlBase}/characters/${characterId}?apikey=${apiKey}`)
     .then(res => res.json())
     .then(data => {
-        console.log(data)
         data.data.results.map (data => {
             const informacionPersonaje = document.querySelector(".contenedor-info-personaje")
             informacionPersonaje.classList.remove("ocultar")
@@ -263,16 +260,11 @@ const mostrarInfoPersonaje = (characterId) => {
     })
 }
 
-
-
 const clickearPersonajeParaVerInfo = () => {
     const tarjetasPersonajes = document.querySelectorAll(".tarjeta-personaje")
-    console.log(tarjetasPersonajes)
 
     tarjetasPersonajes.forEach(tarjeta => {
-    // console.log(tarjeta)
     tarjeta.onclick = (e) => {
-        console.log("CLICK")
         characterId = e.target.dataset.id
         resultados.innerHTML = ""
         mostrarInfoPersonaje(characterId)
@@ -280,10 +272,9 @@ const clickearPersonajeParaVerInfo = () => {
     })
 }
 
+
 ///// MOSTRAR CANTIDAD DE RESULTADOS DE LA BUSQUEDA ////////////////////////////////////////////////////////
 
-const contenedorNumeroDeResultados = document.querySelector(".contenedor-numero-de-resultados")
-console.log(contenedorNumeroDeResultados)
 
 const mostrarCantidadDeResultados = (cantidadDeResultados) => {
     contenedorNumeroDeResultados.innerHTML = `${cantidadDeResultados}`
