@@ -101,6 +101,87 @@ footer {
     text-align: center;
 }
 
+// MEDIA QUERY //////////////////////////////////////////////
+
+@media (max-width: 1024px) {
+    .tarjeta-personaje {
+      width: calc(100% / 5 - 2 * 10px);
+    }
+  
+    .contenedor-input-busqueda {
+      width: 100%;
+      margin-bottom: 25px;
+    }
+  
+    .filtros {
+      width: 100%;
+    }
+  
+    .boton-buscar {
+      margin-top: 20px;
+      margin-left: auto;
+    }
+
+    .contenedor-busqueda {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .contenedor-filtros-busqueda {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+  }
+  
+  @media (max-width: 840px) {
+    .tarjeta-comic {
+      width: calc(100% / 4 - 2 * 10px);
+    }
+  }
+  
+  @media (max-width: 750px) {
+    .contenedor-info-comic,
+    .contenedor-info-personaje {
+      flex-direction: column;
+    }
+  
+    .info-comic,
+    .info-personaje {
+      margin-top: 40px;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .tarjeta-comic, .tarjeta-personaje {
+      width: calc(100% / 3 - 2 * 10px);
+    }
+  }
+  
+  @media (max-width: 430px) {
+    .filtros {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .tarjeta-personaje {
+      width: calc(100% / 2 - 2 * 10px);
+    }
+  }
+  
+  @media (max-width: 360px) {
+    .tarjeta-comic, .tarjeta-personaje {
+      width: calc(100% - 2 * 10px);
+    }
+  
+    .contenedor-imagen-personaje {
+      height: auto;
+    }
+  }
+
+
+/// CLASES ESPECIALES ///////////////
+
+
 .ocultar {
     display: none;
 }
