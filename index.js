@@ -165,6 +165,9 @@ ultimaPagina.onclick = () => {
     buscarResultados()
 }
 
+// aqui estas dando por valor por defecto un string en lugar de un numero
+// que pasa si apelamos a esto y despues sumamos una nueva pagina?
+// el resultado va a ser el string "020"!
 deshabilitarOHabilitarBotones = (offset = "0", cantidadDeResultados = "0") => {
     if (paginaActual == 0) {
         primeraPagina.disabled = true
@@ -196,8 +199,10 @@ const mostrarInfoComic = (comicId) => {
     .then(res => res.json())
     .then(data => {
         data.data.results.map (data => {
+            // bien esta funcion!
             const guionistas = data.creators.items.filter((guionista) => guionista.role === "writer").map((guionista) => guionista.name)
 
+            // aqui hubiera sido preferible usar Date()
             const publicacionFormatoAmericano = data.modified.split("T")[0]
             const dia = publicacionFormatoAmericano.slice(8, 10)
             const mes = publicacionFormatoAmericano.slice(5, 7)
@@ -208,6 +213,9 @@ const mostrarInfoComic = (comicId) => {
             const informacionComic = document.querySelector(".contenedor-info-comic")
             informacionComic.classList.remove("ocultar")
 
+            // Que pasa si no hay guionistas, si no hay imagen, si no hay descripcion o fecha?
+            // Tu codigo debe estar preparado para que estos datos falten y se vea bien la web
+            // Necesitas valores por defecto aqui
             informacionComic.innerHTML = 
             `
             <div class="contenedor-imagen-info-comic">
